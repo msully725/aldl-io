@@ -1,5 +1,5 @@
 # compiler flags
-CFLAGS= -O2 -Wall
+CFLAGS= -O2 -Wall -D DEBUGMASTER
 OBJS= acquire.o error.o loadconfig.o useful.o aldlcomm.o aldldata.o consoleif.o remote.o datalogger.o mode4.o
 LIBS= -pthread -lrt -lncurses -lftdi
 
