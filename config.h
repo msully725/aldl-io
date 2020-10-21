@@ -20,29 +20,29 @@
 
 /* the debug master switch, enables all available debugging and verbosity
    routines.  or, undef this and set individual options below... */
-#undef DEBUGMASTER
+// #undef DEBUGMASTER
 
 /* enable some checks for retarded values being passed to things */
-#undef RETARDED
+// #undef RETARDED
 
 /* generally verbose behavior */
-#undef VERBLOSITY
+// #undef VERBLOSITY
 
 /* debug structural functions, such as record link list management */
-#undef DEBUGSTRUCT
+// #undef DEBUGSTRUCT
 
 /* print debugging info for memory */
-#undef DEBUGMEM
+// #undef DEBUGMEM
 
 /* verbosity levels in raw serial handlers */
-#undef SERIAL_VERBOSE
-#undef SERIAL_SUPERVERBOSE
+// #undef SERIAL_VERBOSE
+// #undef SERIAL_SUPERVERBOSE
 
 /* all errors are fatal error conditions */
-#undef ALL_ERRORS_FATAL
+// #undef ALL_ERRORS_FATAL
 
 /* verbose aldl protocol level comms on stdout */
-#undef ALDL_VERBOSE
+// #undef ALDL_VERBOSE
 
 /* verbose networking */
 #define NET_VERBOSE
@@ -57,6 +57,7 @@
   #define RETARDED
   #define VERBLOSITY
   #define DEBUGSTRUCT
+  #define DEBUGCONFIG
 #endif
 
 /* --------- GLOBAL FEATURE CONFIG -----------------*/

@@ -85,16 +85,25 @@ void serial_purge_tx() {
   return;
 }
 
+byte requestedMessage = 0x00;
+byte requestedChecksum = 0x00;
+
 int serial_write(byte *str, int len) {
   #ifdef SERIAL_VERBOSE
-  printf("WRITE: ");
+  printf("DUMMY MODE: Write - ");
   printhexstring(str,len); 
   #endif
   /* determine mode */
   if(len == 4 && str[0] == 0xF4 && str[1] == 0x56 && \
-     str[2] == 0x08 && str[3] == 0xAE) {
-     txmode = 1;
+    str[2] == 0x08 && str[3] == 0xAE) {
+    txmode = 1;
   }
+
+  if (len >= 5) {
+    requestedMessage = str[3];
+    requestedChecksum = str[4];
+  }
+
   return 0;
 }
 
@@ -126,10 +135,10 @@ inline int serial_read(byte *str, int len) {
     str[0] = 0xF4;
     str[1] = 0x57;
     str[2] = 0x01;
-    str[3] = 0x00;
-    str[4] = 0xB4;
+    str[3] = requestedMessage;
+    str[4] = requestedChecksum;
     #ifdef SERIAL_VERBOSE
-    printf("DUMMY MODE: Data Req. Reply: ");
+    printf("DUMMY MODE: Data Request Reply: ");
     printhexstring(str,5);
     #endif
     return 5;
@@ -138,7 +147,7 @@ inline int serial_read(byte *str, int len) {
     txmode = 2;
     gen_pkt();
     #ifdef SERIAL_VERBOSE
-    printf("DUMMY MODE: Generated packet...\n");
+    printf("\nDUMMY MODE: Generated packet...\n");
     #endif
     int x;
     for(x=0;x<len;x++) {
