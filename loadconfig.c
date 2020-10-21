@@ -43,8 +43,8 @@ void aldl_alloc_c(); /* more data space */
 
 /* config file loading */
 void load_config_a(dfile_t *config); /* load data to alloc_a structures */
-void load_config_b(dfile_t *config); /* load data to alloc_b structures */
-void load_config_c(dfile_t *config);
+void load_config_comm_packets(dfile_t *config); /* load data to alloc_b structures */
+void load_config_aldl_defs(dfile_t *config);
 char *load_config_root(dfile_t *config); /* returns path to sub config */
 
 aldl_conf_t *aldl_setup() {
@@ -78,12 +78,12 @@ aldl_conf_t *aldl_setup() {
   printf("configuration, stage B...\n");
   #endif
   aldl_alloc_b();
-  load_config_b(config);
+  load_config_comm_packets(config);
   #ifdef DEBUGCONFIG
   printf("configuration, stage C...\n");
   #endif
   aldl_alloc_c();
-  load_config_c(config);
+  load_config_aldl_defs(config);
   #ifdef DEBUGCONFIG
   printf("configuration complete.\n");
   #endif
@@ -166,7 +166,7 @@ void aldl_alloc_b() {
   #endif
 }
 
-void load_config_b(dfile_t *config) {
+void load_config_comm_packets(dfile_t *config) {
   int x;
   char *pktname = smalloc(50);
   for(x=0;x<comm->n_packets;x++) {
@@ -204,7 +204,7 @@ void aldl_alloc_c() {
   #endif
 }
 
-void load_config_c(dfile_t *config) {
+void load_config_aldl_defs(dfile_t *config) {
   int x=0;
   char *configstr = smalloc(50);
   char *tmp;
