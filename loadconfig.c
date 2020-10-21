@@ -170,13 +170,14 @@ void load_config_comm_packets(dfile_t *config) {
   int x;
   char *pktname = smalloc(50);
   for(x=0;x<comm->n_packets;x++) {
-    comm->packet[x].id = configopt_byte_fatal(config,pktconfig(pktname,"ID",x));
-    comm->packet[x].length = configopt_int_fatal(config,pktconfig(pktname,
-                                                "SIZE",x),1,255);
-    comm->packet[x].offset = configopt_int(config,pktconfig(pktname,
-                                                 "OFFSET",x),0,254,3);
-    comm->packet[x].frequency = configopt_int(config,pktconfig(pktname,
-                                                 "FREQUENCY",x),0,1000,1);
+    comm->packet[x].id = 
+      configopt_byte_fatal(config,pktconfig(pktname,"ID",x));
+    comm->packet[x].length = 
+      configopt_int_fatal(config,pktconfig(pktname, "SIZE",x),1,255);
+    comm->packet[x].offset = 
+      configopt_int(config,pktconfig(pktname, "OFFSET",x),0,254,3);
+    comm->packet[x].frequency = 
+      configopt_int(config,pktconfig(pktname, "FREQUENCY",x),0,1000,1);
     generate_pktcommand(&comm->packet[x],comm);
     #ifdef DEBUGCONFIG
     printf("loaded packet %i\n",x);
