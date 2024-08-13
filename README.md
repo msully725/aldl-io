@@ -1,3 +1,5 @@
+*This is a fork from [ecmhack.com](https://ecmhack.com/misc/raspberry-pi-dashboarddatalogger/)*
+
 ## overview
 
 this is a program designed to manage aldl datastreams from the 8192 baud series
